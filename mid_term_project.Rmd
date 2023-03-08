@@ -1,0 +1,113 @@
+---
+title: "Mid-Term Project"
+author: "Dhananjay"
+date: "2023-02-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+```{r}
+# Loading the required libraries
+library(treemap)
+library(tidyverse)
+library(RColorBrewer)
+
+# Reading the dataset 
+edgeComputingTechniquesData <- read.csv("ComputingTechniques.csv", header = TRUE, sep = ',')
+print(edgeComputingTechniquesData)
+
+# Creating a treemap using treemap() function
+treemap(edgeComputingTechniquesData,
+        index = "Edge_Computing_Techniques",
+        vSize = "Distribution",
+        type = "index",
+        palette = "Spectral",
+        title = "Edge Computing Techniques Distribution",
+        fontsize.title = 14,
+        border.col = "black",
+        border.lwds = 4,
+        fontsize.labels = 11.7,
+        fontcolor.labels = "white",
+        fontface.labels = 2,
+        #inflate.labels = F
+) 
+  
+
+
+```
+
+
+
+```{r fig.width=4}
+# Loading the required libraries
+library(tidyverse)
+library(ggplot2)
+#library(RColorBrewer)
+
+# Reading the dataset 
+latencyData <- read.csv("LatencyData.csv", header = TRUE, sep = ',')
+print(latencyData)
+
+# Plotting the data using bar chart
+ggplot(latencyData, aes(x = Strategies, y = Latency, fill = Strategies)) +
+  geom_bar(stat = "identity", position = "dodge", color="white", width = 0.5, show.legend = FALSE) +
+  theme_classic() +
+  scale_fill_manual(values = c("red", "blue", "black")) +
+  geom_text(aes(label = paste0(Latency), y = Latency), vjust = -0.3) +
+  #scale_fill_brewer(palette = "Set2") +
+  #coord_flip() +
+  labs(title = "Latency Comparison with Applied Strategies", 
+       x = "Strategies Applied", 
+       y = "Latency (ms)") 
+  #theme(axis.text.x = element_text(angle = 30, vjust = 1, hjust = 1))
+
+```
+
+
+
+```{r}
+# Loading the required libraries
+library(tidyverse)
+library(ggplot2)
+library(RColorBrewer)
+
+# Reading the dataset 
+pollutantsData <- read.csv("PollutantsData.csv", header = TRUE, sep = ',')
+print(pollutantsData)
+
+# Plotting the data using bar chart
+ggplot(pollutantsData, aes(x = Pollutants, y = Contribution, fill = Pollutants)) +
+  geom_bar(stat = "identity", position = "dodge", color="black", show.legend = FALSE) +
+  theme_classic() +
+  geom_text(aes(label = paste0(Contribution), y = Contribution), vjust = 0.5, hjust = -0.5) +
+  scale_fill_brewer(palette = "Set2") +
+  coord_flip() +
+  labs(title = "Statistics of the CO2 Emission by Transport Sector", 
+       x = "Pollutants", 
+       y = "Contribution (%)",
+       fill = "Pollutants") 
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
